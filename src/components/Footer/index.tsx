@@ -1,16 +1,10 @@
 import { FC, ReactNode } from 'react';
 import Box from '@material-ui/core/Box';
-import { useTranslation } from 'react-i18next';
-import {
-  FaDiscord,
-  FaGithub,
-  FaTwitter,
-  FaReadme,
-  FaBlog,
-} from 'react-icons/fa';
+import { useTranslation } from 'next-i18next';
 
 import Section from 'components/UI/Section';
 import Typography from 'components/UI/Typography';
+import Link from 'next/link';
 
 const FooterLink: FC<{
   href: string;
@@ -45,19 +39,38 @@ const Footer = () => {
 
   return (
     <Section className="p-0 m-0">
-      <Box className="flex flex-col m-auto sm:flex-row">
-        <div className="flex flex-col mb-6 sm:mr-20">
+      <Box className="flex flex-col m-auto md:flex-row">
+        <Box className="flex flex-col mb-6 md:mr-20">
           <img
             src="/svg/logo.svg"
             alt="logo"
-            className="w-10 h-10 my-2 mr-7 sm:mb-4"
+            className="w-10 h-10 my-2 mr-7 md:mb-4"
           />
           <Typography variant="p" className="copyright">
             {t('copyright')}
           </Typography>
-        </div>
-        <Box className="flex flex-row">
-          <Box className="flex flex-col mr-7 w-1/2 sm:mr-20">
+        </Box>
+        <Box className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <Box className="flex flex-col">
+            <Typography variant="h4" className="mb-2">
+              {t('learn')}
+            </Typography>
+            <ul>
+              <FooterLink
+                name={t('blog')}
+                href="https://discord.gg/dopex"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+              <FooterLink
+                name={t('Knowledge Base')}
+                href="https://twitter.com/dopex_io"
+                target="_blank"
+                rel="noopener noreferrer"
+              />
+            </ul>
+          </Box>
+          <Box className="flex flex-col">
             <Typography variant="h4" className="mb-2">
               {t('community')}
             </Typography>
@@ -67,31 +80,13 @@ const Footer = () => {
                 href="https://discord.gg/dopex"
                 target="_blank"
                 rel="noopener noreferrer"
-                Icon={FaDiscord}
               />
               <FooterLink
                 name={t('twitter')}
                 href="https://twitter.com/dopex_io"
                 target="_blank"
                 rel="noopener noreferrer"
-                Icon={FaTwitter}
               />
-              <FooterLink
-                href="https://defipulse.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                imgSrc="/svg/defi_pulse.svg"
-              >
-                DefiPulse
-              </FooterLink>
-              <FooterLink
-                href="https://blog.dopex.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-                Icon={FaBlog}
-              >
-                {t('blog')}
-              </FooterLink>
             </ul>
           </Box>
           <Box className="flex flex-col">
@@ -104,15 +99,25 @@ const Footer = () => {
                 href="https://github.com/dopex-io"
                 target="_blank"
                 rel="noopener noreferrer"
-                Icon={FaGithub}
               />
               <FooterLink
                 name={t('documentation')}
                 href="https://docs.dopex.io/"
                 target="_blank"
                 rel="noopener noreferrer"
-                Icon={FaReadme}
               />
+            </ul>
+          </Box>
+          <Box className="flex flex-col">
+            <Typography variant="h4" className="mb-2">
+              {t('other')}
+            </Typography>
+            <ul>
+              <Link href="/sale">
+                <Typography variant="p" component="span">
+                  {t('sale')}
+                </Typography>
+              </Link>
             </ul>
           </Box>
         </Box>
